@@ -6,6 +6,8 @@
 #include "..\DEFs.h"
 
 #include "../GUI/Drawable.h"
+#include "../GUI/CMUgraphicsLib\CMUgraphics.h"
+
 using namespace std;
 class StudyPlan;
 
@@ -20,6 +22,10 @@ class Course : public Drawable
 	double Points; //for ex: course of 3 crd and grade A has points 3*4=12
 	list<Course_Code> PreReq;	//list of prerequisites
 	list<Course_Code> CoReq;	//list of prerequisites
+
+	//EMAN
+	color courseColor = YELLOW;
+
 public:
 	Course(Course_Code r_code,string r_title, int crd);
 	void setPreReq(list<Course_Code>);
@@ -45,5 +51,8 @@ public:
 	void DrawMe(GUI*) const;
 	bool operator=(const Course& anotherCourse);
 	virtual ~Course();
+
+	color getColor() const;
+	void setColor(int colorCode);
 
 };

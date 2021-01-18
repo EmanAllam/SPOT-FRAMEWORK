@@ -233,3 +233,26 @@ bool Course::operator=(const Course& anotherCourse)
 		return true;
 	return false;
 }
+
+
+//EMAN
+color Course::getColor() const
+{
+	return courseColor;
+}
+
+void Course::setColor(int colorCode)
+{
+	if (colorCode == 0)
+	{
+		courseColor = YELLOW;
+	}
+	else if (colorCode == 1)
+	{
+		courseColor = ORANGE;
+	}
+	else if (colorCode == 2)
+	{
+		courseColor = RED;
+	}
+}

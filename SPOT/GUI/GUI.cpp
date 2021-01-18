@@ -6,6 +6,10 @@
 #include <map>
 #include "..\ViewField.h"
 #include <conio.h>
+
+//EMAN
+#include "../Warning.h"
+
 using namespace std;
 GUI::GUI()
 {
@@ -23,6 +27,9 @@ GUI::GUI()
 	changeMenuItemTo(ITM_ADD_GRADE, "GUI\\Images\\Menu\\gpa1.jpg");
 	changeMenuItemTo(ITM_SHOW_GRADE, "GUI\\Images\\Menu\\gpa2.jpg");
 	changeMenuItemTo(ITM_SUPPORT_MINOR, "GUI\\Images\\Menu\\gpa3.jpg");
+
+	//EMAN
+	changeMenuItemTo(ITM_VALIDITY_REPORT, "GUI\\Images\\Menu\\VALIDITY_REPORT.jpg");
 
 
 	pWind = new window(WindWidth, WindHeight, wx, wy);
@@ -118,6 +125,13 @@ void GUI::DrawCourse(const Course* pCrs)
 	else if (pCrs->getType() == "Minor")
 		DrawColor = DIMGREY;
 	else DrawColor = GREEN;
+
+	//EMAN
+	color invalidityColor = pCrs->getColor();
+	if (invalidityColor != YELLOW) {
+		//pWind->SetBrush(invalidityColor);
+		DrawColor = invalidityColor;
+	}
 
 
 	if (pCrs->isSelected())
@@ -231,6 +245,9 @@ ActionData GUI::GetUserAction(string msg) const
 				case ITM_ADD_GRADE: return ActionData{ ADD_GRADE,x,y };
 				case ITM_SHOW_GRADE: return ActionData{ SHOW_GRADE,x,y };
 				case ITM_SUPPORT_MINOR: return ActionData{ SUPPORT_MINOR,x,y };
+
+				//EMAN
+				case ITM_VALIDITY_REPORT: return ActionData{ VALIDITY_REPORT,x,y };
 					
 
 				default: return ActionData{ MENU_BAR };	   //A click on empty place in menu bar
@@ -295,6 +312,9 @@ ActionData GUI::GetUserAction() const
 
 				case ITM_ADD_NOTES: return ActionData{ ADD_NOTES };
 				case ITM_SHOW_NOTES: return ActionData{ SHOW_NOTES };
+
+				case ITM_VALIDITY_REPORT: return ActionData{ VALIDITY_REPORT };
+
 				default: return ActionData{ MENU_BAR };	   //A click on empty place in menu bar
 
 				}
@@ -352,6 +372,9 @@ ActionData GUI::GetCoordAndSenseDelete() const
 
 				case ITM_ADD_NOTES: return ActionData{ ADD_NOTES };
 				case ITM_SHOW_NOTES: return ActionData{ SHOW_NOTES };
+
+				case ITM_VALIDITY_REPORT: return ActionData{ VALIDITY_REPORT };
+
 				default: return ActionData{ MENU_BAR };	   //A click on empty place in menu bar
 
 				}
@@ -501,4 +524,44 @@ void GUI::DrawOnlyTwoCourses(const Course* crs1, const Course* crs2)
 GUI::~GUI()
 {
 	delete pWind;
+}
+
+
+
+
+//EMAN
+void GUI::DrawWarning(const Warning* pWarning)
+{
+	if (pWarning->isSelected())
+		pWind->SetPen(HiColor, 2);
+	else
+		pWind->SetPen(DrawColor, 2);
+	pWind->SetBrush(FillColor);
+	graphicsInfo gInfo = pWarning->getGfxInfo();
+	pWind->DrawRectangle(gInfo.x, gInfo.y, gInfo.x + Warning_Width, gInfo.y + Warning_Height);
+	pWind->DrawLine(gInfo.x, gInfo.y + Warning_Height / 10, gInfo.x + Warning_Width, gInfo.y + Warning_Height / 10);
+
+	//Write the content.
+	int Code_x = gInfo.x + Warning_Width * 0.3;
+	int Code_y = gInfo.y;
+	pWind->SetFont(Warning_Height * 0.06, BOLD, BY_NAME, "Gramound");
+	pWind->SetPen(MsgColor);
+
+	pWind->DrawString(Code_x, Code_y, "Warnings");
+
+
+	char* context = nullptr;
+	char* pch;
+	char* S = new char[pWarning->getContent().length() + 1];
+	strcpy_s(S, pWarning->getContent().length() + 1, pWarning->getContent().c_str());
+	pch = strtok_s(S, "\n", &context);
+
+	pWind->SetFont(Warning_Height * 0.04, BOLD, BY_NAME, "Gramound");
+	int new_margin = WarningLine_yMargin;
+	while (pch != NULL)
+	{
+		new_margin += WarningLine_yMargin;
+		pWind->DrawString(gInfo.x + Warning_Width * 0.05, gInfo.y + Warning_Height / 10 + new_margin, pch);
+		pch = strtok_s(NULL, "\n", &context);
+	}
 }

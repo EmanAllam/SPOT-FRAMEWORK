@@ -15,6 +15,9 @@ void StudyPlan::instantiatePlan()
 	//More year can be added
 	for (int i = 0; i < 5; i++)
 		plan->push_back(new AcademicYear);
+
+	// EMAN
+	warningMessage = new Warning;
 }
 
 
@@ -50,6 +53,12 @@ void StudyPlan::DrawMe(GUI* pGUI) const
 	//Plan draws all year inside it.
 	for (int i = 0; i < plan->size(); i++)
 		(*plan)[i]->DrawMe(pGUI);
+
+	// EMAN
+	graphicsInfo gInfo{ Year_xStart + YearWidth + Warning_xMargin, Year_yStart };
+	warningMessage->setGfxInfo(gInfo);
+	warningMessage->DrawMe(pGUI);
+
 }
 
 AcademicYear* StudyPlan::getAcadamicYearAt(int year)
@@ -962,3 +971,126 @@ bool StudyPlan::checkUniElec()
 StudyPlan::~StudyPlan()
 {
 }
+
+//EMAN STUFF
+
+bool StudyPlan::AddWarning(string content)
+{
+	warningMessage->AddContent(content);
+
+	return true;
+
+}
+
+void StudyPlan::ClearWarnings() {
+	warningMessage->ClearWarnings();
+	resetColors();
+}
+
+
+void StudyPlan::resetColors()
+{
+	for (auto academicYear = plan->begin(); academicYear != plan->end(); ++academicYear)
+	{
+		for (int sem = FALL; sem < SEM_CNT; sem++)
+		{
+			list<Course*> currentSemester = (*academicYear)->getYearCourses(sem);
+			std::list<Course*>::iterator it;
+			if ((currentSemester).size() == 0)
+				continue;
+			for (it = currentSemester.begin(); it != currentSemester.end(); it++)
+			{
+				Course* currentCourse = (*it);
+				currentCourse->setColor(0);
+			}
+		}
+	}
+}
+
+void StudyPlan::saveTxtFile()
+{
+	warningMessage->saveTxtFile();
+}
+
+ErrorList* StudyPlan::getErrors()
+{
+	int cnt = 0;
+
+	ErrorList* errorList = new ErrorList();
+
+	// THIS SHOULD BE REPLACED WITH ACTUAL ERROR CHECKS
+	map<Course*, map<PROBLEM_VALIDATION_TYPE, vector<Course_Code>>>* invalidCourse = checkCoPreReqValidation();
+	//for (map<Course*, map<PROBLEM_VALIDATION_TYPE, vector<Course_Code>>>::iterator itCourse = invalidCourse->begin(); itCourse != invalidCourse->end(); ++itCourse)
+	for (const auto &itCourse: invalidCourse)
+	{
+		//cout << itCourse->first->getCode() << endl;
+		errorList->addError(BasicError(1, itCourse->first));
+	}
+
+	/*
+	Rules rules = this->RegRules;
+	map<Course_Code, PROBLEM_VALIDATION_TYPE>* invalidProg = checkForProgramReq(rules);
+	for (map<Course_Code, PROBLEM_VALIDATION_TYPE>::iterator it = invalidProg->begin(); it != invalidProg->end(); it++)
+	{
+		errorList->addError(BasicError(3));
+	}
+	*/
+
+
+
+	//Just for testing purposes
+	/*
+	Course* x = new Course("CIE 321", "qdwefrgtrhyt", 3);
+	BasicError error_1 = BasicError(1, x);
+
+	SEMESTER sem = SUMMER;
+	BasicError error_2 = BasicError(2, sem, 3);
+
+	BasicError error_3 = BasicError(3);
+
+	BasicError error_4 = BasicError(4);
+
+	Course* x2 = new Course("CIE 101", "pew", 5);
+	BasicError error_5 = BasicError(5, x2);
+
+	errorList->addError(error_1);
+	errorList->addError(error_2);
+	errorList->addError(error_3);
+	errorList->addError(error_4);
+	errorList->addError(error_5);
+	*/
+
+	/*
+	for (int i = 0; i < 5; i++)
+	{
+		BasicError new_error = BasicError(1, x);
+		errorList->addError(new_error);
+	}
+	*/
+
+	//int arr1[5] = { 1,2,3,4,5 };
+	//string arr2[5] = { "CIE 202", "Summer Year1","", "", "ENGR 210" };
+	return errorList;
+}
+
+void StudyPlan::displayWarning(ErrorList* errorList)
+{
+	ClearWarnings();
+	int cnt = errorList->getCount();
+	BasicError* errorArray = errorList->getErrorArray();
+	for (int i = 0; i < cnt; i++)
+	{
+		AddWarning(errorArray[i].get_error_msg());
+		cout << errorArray[i].get_error_msg() << endl;
+
+		if (errorArray[i].getType() == 1)
+		{
+			errorArray[i].getCourse()->setColor(2);
+
+		}
+
+	}
+}
+
+
+

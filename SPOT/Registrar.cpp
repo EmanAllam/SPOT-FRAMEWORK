@@ -21,6 +21,11 @@
 #include "ActionDisplayStudentLevel.h"
 #include "ActionSupportMinor.h"
 #include "ActionShowGpa.h"
+
+//EMAN
+#include "ActionValidityReport.h"
+
+
 #include <map>
 using namespace std;
 Registrar::Registrar()
@@ -189,6 +194,10 @@ Action* Registrar::CreateRequiredAction()
 		RequiredAction = new ActionSupportMinor(this);
 		break;
 
+	//EMAN
+	case VALIDITY_REPORT:
+		RequiredAction = new ActionValidityReport(this);
+		break;
 
 
 

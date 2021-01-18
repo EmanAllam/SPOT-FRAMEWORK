@@ -56,8 +56,11 @@ enum ActionType
 	ADD_NOTES, //Add written notes
 	SHOW_NOTES, //Show written notes	//ESC key is pressed
 	//this is made specifcally for showing info for course selected, if it's selected and use clicked on delete button. it should delete the coure.
-	DEL_BUTTON_CLICKED
+	DEL_BUTTON_CLICKED,
 	//TODO: Add more action types
+
+	//EMAN
+	VALIDITY_REPORT
 
 };
 

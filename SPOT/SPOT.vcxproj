@@ -140,6 +140,8 @@
     <ClCompile Include="ActionSignUserUp.cpp" />
     <ClCompile Include="ActionSupportMinor.cpp" />
     <ClCompile Include="Actions\ActionAddCourse.cpp" />
+    <ClCompile Include="ActionValidityReport.cpp" />
+    <ClCompile Include="BasicError.cpp" />
     <ClCompile Include="ButtonField.cpp" />
     <ClCompile Include="Courses\Course.cpp" />
     <ClCompile Include="Drawable_Parent.cpp" />
@@ -192,6 +194,7 @@
     <ClCompile Include="StudyPlan\StudyPlan.cpp" />
     <ClCompile Include="Text_field.cpp" />
     <ClCompile Include="ViewField.cpp" />
+    <ClCompile Include="Warning.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionAddGrade.h" />
@@ -216,10 +219,13 @@
     <ClInclude Include="ActionSupportMinor.h" />
     <ClInclude Include="Actions\Action.h" />
     <ClInclude Include="Actions\ActionAddCourse.h" />
+    <ClInclude Include="ActionValidityReport.h" />
+    <ClInclude Include="BasicError.h" />
     <ClInclude Include="ButtonField.h" />
     <ClInclude Include="Courses\Course.h" />
     <ClInclude Include="Drawable_Parent.h" />
     <ClInclude Include="EmptyAction.h" />
+    <ClInclude Include="ErrorList.h" />
     <ClInclude Include="GUI\CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="GUI\CMUgraphicsLib\colors.h" />
     <ClInclude Include="GUI\CMUgraphicsLib\error.h" />
@@ -252,23 +258,29 @@
     <ClInclude Include="StudyPlan\StudyPlan.h" />
     <ClInclude Include="Text_field.h" />
     <ClInclude Include="ViewField.h" />
+    <ClInclude Include="Warning.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Files\CIE-Requirements.txt" />
     <Text Include="Files\CIE-StudyPlan.txt" />
+    <Text Include="Files\CIE_REQ.txt" />
     <Text Include="Files\courses-catalog.txt" />
     <Text Include="Files\ENV-Requirements.txt" />
     <Text Include="Files\ENV-StudyPlan.txt" />
+    <Text Include="Files\ENV_REQ.txt" />
     <Text Include="Files\LAST CODE.txt" />
     <Text Include="Files\NAN-StudyPlan.txt" />
     <Text Include="Files\NANENG-Requirements.txt" />
+    <Text Include="Files\NAN_REQ.txt" />
     <Text Include="Files\Notes.txt" />
     <Text Include="Files\Offerings.txt" />
     <Text Include="Files\PEU-Requirements.txt" />
     <Text Include="Files\REE-Requirements.txt" />
     <Text Include="Files\REE-StudyPlan.txt" />
+    <Text Include="Files\REE_REQ.txt" />
     <Text Include="Files\SPC-Requirements.txt" />
     <Text Include="Files\SPC-StudyPlan.txt" />
+    <Text Include="Files\SPC_REQ.txt" />
     <Text Include="Files\StudentProfile.txt" />
     <Text Include="Files\studyPlans.txt" />
     <Text Include="GUI\CMUgraphicsLib\Manual.txt" />

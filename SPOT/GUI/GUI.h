@@ -14,6 +14,9 @@ StatusBarHeight = 60,	//Status Bar Height
 MenuBarHeight = 50,		//Menu Bar Height (distance from top of window to bottom line of menu bar)
 MenuItemWidth = 40;		//Width of each item in the menu
 
+//EMAN
+class Warning;
+
 class GUI
 {
 
@@ -41,6 +44,10 @@ public:
 		ITM_ADD_GRADE,
 		ITM_SHOW_GRADE,
 		ITM_SUPPORT_MINOR,
+
+		//EMAN
+		ITM_VALIDITY_REPORT,
+
 		ITM_CNT		    //no. of menu items ==> This should be the last line in this enum
 
 
@@ -57,7 +64,7 @@ private:
 
 
 
-	//color DrawColor = BLACK;		//Drawing color
+	color DrawColor = BLACK;		//Drawing color
 	color FillColor = YELLOW;		//Filling color (for courses)
 	color HiColor = RED;			//Highlighting color
 	color ConnColor = GREEN;		//Connector color
@@ -102,6 +109,11 @@ public:
 	bool isPointInMenuBarRange(int x, int y);
 	void DrawOnlyTwoCourses(const Course* crs1, const Course* crs2);
 	~GUI();
+
+
+	//EMAN
+	void DrawWarning(const Warning*);
+
 };
 
 //filePathForCloseIcon = "GUI\\Images\\Menu\\Cancel.jpg";

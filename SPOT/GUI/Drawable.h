@@ -10,6 +10,15 @@ enum
 	CRS_HEIGHT = 30,	//Height of course rectangle to be drawn on screen
 	//PLAN_YEAR_WIDTH = CRS_WIDTH * 4,	//width of plan year rectangle to be drawn on screen
 	//PLAN_YEAR_HEIGHT	//Height of play year rectangle to be drawn on screen
+
+	Year_xStart = 10,
+	Year_yStart = 100,
+	YearWidth = 1000,
+	YearHeight = 100,
+	Warning_xMargin = 20,
+	Warning_Width = 250,
+	Warning_Height = 500,
+	WarningLine_yMargin = 15
 };
 
 //Used for drawing and displaying the academic years.

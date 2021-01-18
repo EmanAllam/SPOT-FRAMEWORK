@@ -6,6 +6,10 @@
 #include "..\Rules.h"
 #include <map>
 #include "..\Rules.h"
+
+#include "../ErrorList.h"
+#include "../Warning.h"
+
 //A full study plan for as student
 const string UNI_MIN_NOT_FOUND_COURSE_CODE = "1";
 const string TRACK_MIN_NOT_FOUND_COURSE_CODE = "2";
@@ -111,6 +115,9 @@ class StudyPlan:public Drawable
 	Course* getCourseForCourseCode(Course_Code);
 	//It calculates the total number of credits in vector of course.
 	int getCreditsCountInVector(vector<Course*> crss);
+
+	//EMAN STUFF
+	Warning* warningMessage; 
 public:
 	StudyPlan();
 	bool AddCourse(Course*, int year, SEMESTER);
@@ -149,5 +156,16 @@ public:
 		every course code is associated with it's problem type, by map.	
 	*/
 	map<Course_Code, PROBLEM_VALIDATION_TYPE>* checkForProgramReq(Rules rules);
+	
+	
+	//EMAN STUFF
+	bool AddWarning(string content);
+	void ClearWarnings();
+	void resetColors();
+	void saveTxtFile();
+	ErrorList* getErrors();
+	void displayWarning(ErrorList* errorList);
+
+
 };
 

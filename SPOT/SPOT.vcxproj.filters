@@ -74,6 +74,9 @@
     <ClCompile Include="ActionDisplayStudentLevel.cpp" />
     <ClCompile Include="ActionSupportMinor.cpp" />
     <ClCompile Include="ActionShowGpa.cpp" />
+    <ClCompile Include="Warning.cpp" />
+    <ClCompile Include="ActionValidityReport.cpp" />
+    <ClCompile Include="BasicError.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionAddNotes.h" />
@@ -134,6 +137,10 @@
     <ClInclude Include="ActionDisplayStudentLevel.h" />
     <ClInclude Include="ActionSupportMinor.h" />
     <ClInclude Include="ActionShowGpa.h" />
+    <ClInclude Include="Warning.h" />
+    <ClInclude Include="ErrorList.h" />
+    <ClInclude Include="ActionValidityReport.h" />
+    <ClInclude Include="BasicError.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
@@ -158,5 +165,10 @@
     <Text Include="Files\SPC-StudyPlan.txt" />
     <Text Include="Files\StudentProfile.txt" />
     <Text Include="Files\studyPlans.txt" />
+    <Text Include="Files\SPC_REQ.txt" />
+    <Text Include="Files\REE_REQ.txt" />
+    <Text Include="Files\NAN_REQ.txt" />
+    <Text Include="Files\CIE_REQ.txt" />
+    <Text Include="Files\ENV_REQ.txt" />
   </ItemGroup>
 </Project>
