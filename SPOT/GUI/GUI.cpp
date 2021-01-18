@@ -128,17 +128,20 @@ void GUI::DrawCourse(const Course* pCrs)
 
 	//EMAN
 	color invalidityColor = pCrs->getColor();
+	color brushColor = ZewailCityBackground;
 	if (invalidityColor != YELLOW) {
 		//pWind->SetBrush(invalidityColor);
-		DrawColor = invalidityColor;
+		brushColor = invalidityColor;
 	}
+
+
 
 
 	if (pCrs->isSelected())
 		pWind->SetPen(RED, 2);
 	else
 		pWind->SetPen(DrawColor, 2);
-	pWind->SetBrush(ZewailCityBackground);
+	pWind->SetBrush(brushColor);
 	graphicsInfo gInfo = pCrs->getGfxInfoComp().topLeft;
 	//elective courses are rounded
 	if (pCrs->getType() == "UnivElective" || pCrs->getType() == "MajorElective")
@@ -536,7 +539,7 @@ void GUI::DrawWarning(const Warning* pWarning)
 		pWind->SetPen(HiColor, 2);
 	else
 		pWind->SetPen(DrawColor, 2);
-	pWind->SetBrush(FillColor);
+	pWind->SetBrush(ZewailCityBackground);
 	graphicsInfo gInfo = pWarning->getGfxInfo();
 	pWind->DrawRectangle(gInfo.x, gInfo.y, gInfo.x + Warning_Width, gInfo.y + Warning_Height);
 	pWind->DrawLine(gInfo.x, gInfo.y + Warning_Height / 10, gInfo.x + Warning_Width, gInfo.y + Warning_Height / 10);
@@ -544,8 +547,8 @@ void GUI::DrawWarning(const Warning* pWarning)
 	//Write the content.
 	int Code_x = gInfo.x + Warning_Width * 0.3;
 	int Code_y = gInfo.y;
-	pWind->SetFont(Warning_Height * 0.06, BOLD, BY_NAME, "Gramound");
-	pWind->SetPen(MsgColor);
+	pWind->SetFont(Warning_Height * 0.06, BOLD, BY_NAME, "Arial");
+	pWind->SetPen(WarnMsgColor);
 
 	pWind->DrawString(Code_x, Code_y, "Warnings");
 
@@ -556,8 +559,10 @@ void GUI::DrawWarning(const Warning* pWarning)
 	strcpy_s(S, pWarning->getContent().length() + 1, pWarning->getContent().c_str());
 	pch = strtok_s(S, "\n", &context);
 
-	pWind->SetFont(Warning_Height * 0.04, BOLD, BY_NAME, "Gramound");
+	pWind->SetFont(Warning_Height * 0.04, BOLD, BY_NAME, "Arial");
 	int new_margin = WarningLine_yMargin;
+
+	pWind->SetFont(Warning_Height * 0.022, BOLD, BY_NAME, "Arial");
 	while (pch != NULL)
 	{
 		new_margin += WarningLine_yMargin;

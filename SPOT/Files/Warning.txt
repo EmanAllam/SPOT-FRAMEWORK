@@ -1,0 +1,4 @@
+Invalid Study Plan: Course MATH 302 has unmet dependencies. (Critical issue)
+Invalid Study Plan: Course ENGR 207 has unmet dependencies. (Critical issue)
+Invalid Study Plan: Course MATH 306 has unmet dependencies. (Critical issue)
+Invalid Study Plan: the Program has unmet dependencies. (Critical issue)

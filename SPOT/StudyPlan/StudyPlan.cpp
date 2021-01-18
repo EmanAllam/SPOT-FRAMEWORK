@@ -1019,22 +1019,28 @@ ErrorList* StudyPlan::getErrors()
 	ErrorList* errorList = new ErrorList();
 
 	// THIS SHOULD BE REPLACED WITH ACTUAL ERROR CHECKS
+	
 	map<Course*, map<PROBLEM_VALIDATION_TYPE, vector<Course_Code>>>* invalidCourse = checkCoPreReqValidation();
+
 	//for (map<Course*, map<PROBLEM_VALIDATION_TYPE, vector<Course_Code>>>::iterator itCourse = invalidCourse->begin(); itCourse != invalidCourse->end(); ++itCourse)
-	for (const auto &itCourse: invalidCourse)
+	//for (auto const &itCourse : invalidCourse)
+	for (auto itCourse = invalidCourse->begin(); itCourse != invalidCourse->end(); ++itCourse)
 	{
 		//cout << itCourse->first->getCode() << endl;
 		errorList->addError(BasicError(1, itCourse->first));
 	}
-
-	/*
+	
+	
 	Rules rules = this->RegRules;
 	map<Course_Code, PROBLEM_VALIDATION_TYPE>* invalidProg = checkForProgramReq(rules);
-	for (map<Course_Code, PROBLEM_VALIDATION_TYPE>::iterator it = invalidProg->begin(); it != invalidProg->end(); it++)
-	{
+	//for (map<Course_Code, PROBLEM_VALIDATION_TYPE>::iterator it = invalidProg->begin(); it != invalidProg->end(); it++)
+	cout << "BEFORE LOOP" << endl;
+	for (auto it = invalidProg->begin(); it != invalidProg->end(); ++it) {
 		errorList->addError(BasicError(3));
+		break;
 	}
-	*/
+	
+
 
 
 

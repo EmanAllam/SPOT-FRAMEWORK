@@ -12,12 +12,12 @@ enum
 	//PLAN_YEAR_HEIGHT	//Height of play year rectangle to be drawn on screen
 
 	Year_xStart = 10,
-	Year_yStart = 100,
-	YearWidth = 1000,
+	Year_yStart = 50,
+	YearWidth = 850,
 	YearHeight = 100,
 	Warning_xMargin = 20,
-	Warning_Width = 250,
-	Warning_Height = 500,
+	Warning_Width = 400,
+	Warning_Height = 600,
 	WarningLine_yMargin = 15
 };
 

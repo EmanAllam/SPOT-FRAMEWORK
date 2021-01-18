@@ -62,7 +62,8 @@ private:
 	//Some constants for GUI
 	
 
-
+	//EMAN
+	color WarnMsgColor = BLACK;
 
 	color DrawColor = BLACK;		//Drawing color
 	color FillColor = YELLOW;		//Filling color (for courses)

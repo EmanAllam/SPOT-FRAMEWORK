@@ -28,7 +28,7 @@ bool ActionValidityReport::Execute()
 	ErrorList* errorList = pS->getErrors();
 	pS->displayWarning(errorList);
 	pS->saveTxtFile();
-	sleep_for(5s);
+	sleep_for(2s);
 
 	actionChangeMenuItemTo->reverseExcute();
 	delete actionChangeMenuItemTo;

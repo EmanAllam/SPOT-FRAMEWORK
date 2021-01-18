@@ -242,7 +242,8 @@ color Course::getColor() const
 }
 
 void Course::setColor(int colorCode)
-{
+{	
+
 	if (colorCode == 0)
 	{
 		courseColor = YELLOW;
