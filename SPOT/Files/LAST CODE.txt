@@ -1,0 +1,140 @@
+#include "jsonParser.h"
+#include "DEFs.h"
+#include<iostream>
+#include<fstream>
+
+
+
+
+string& JsonParser::getCourseNameFromCode(const string& code)
+{
+	string name = "Linear algebra and its applications";
+	return name;
+}
+
+int& JsonParser::getCourseCreditsFromCode(const string& code)
+{
+	int credits= 3;
+	return credits;
+}
+bool JsonParser::contains(const string& input, const string& searchable) 
+{
+
+	if (input.find(searchable) != std::string::npos)
+	{
+		//Found
+		return true;;
+	}
+	return false;
+
+}
+bool JsonParser::isCourseCode(const string& input)
+{
+	/*if (isYear(input)) 
+	{
+		cout << "isCourse0" << endl;
+		return false;
+	}
+		*/
+	/*if (isSemster(input))
+	{
+		cout << "isCourse1" << endl;
+		return false;
+
+	}*/
+	return true;
+	
+}
+
+bool JsonParser::isYear(const string& input) 
+{
+	//cout << "ISYEAR ";
+//	cout << input<<endl;
+
+	if (contains(input,"Year" ) == 1)
+		return true;
+	return false;
+}
+
+bool JsonParser::isSemster(const string& input)
+{
+	cout <<"input"<<input;
+	if (contains(input, "Fall"))
+	{
+		cout << " 0 ";
+		//cout << contains(input, "Fall");
+		return true;
+	}
+		
+	if (contains(input, "Spring"))
+	{
+		cout << " 1 ";
+		//cout << contains(input, "Spring");
+		return true;
+
+	}
+		
+	if (contains(input, "Summer"))
+	{
+		cout << " 2 ";
+		cout << contains(input, "Summer");
+		return true;
+	}
+		
+	return false;
+}
+SEMESTER JsonParser::getSemesterFromString(const string& input)
+{
+	if(input=="Fall")
+		return FALL;
+	if(input=="Spring")
+		return SPRING;
+	if(input=="Summer")
+		return SUMMER;
+	return SEM_CNT;
+}
+
+void JsonParser::fillDefaultStudyPlanForMajor(ifstream& majorsFile,StudyPlan* studyPlan )
+{
+
+	
+	char* pch;
+	char* context = nullptr;
+	const int size = 300;
+	char line[size];
+	/*while (majorsFile.getline(line, size))
+	{
+		//int lastSeenYear;
+		//SEMESTER lastSeenSemster;
+		pch = strtok_s(line, ",", &context);
+		while (pch != NULL)
+		{
+			cout << "PCH:: " << pch;
+
+			if (isCourseCode(pch)) 
+			{
+				Course* c = new Course(pch, getCourseNameFromCode(pch), getCourseCreditsFromCode(pch));
+				cout << " Course "<<endl;
+				//studyPlan->AddCourse(c, lastSeenSemster, lastSeenSemster);
+			}
+			/*else 
+			{
+				if (isYear(pch))
+				{
+					cout << " isYear"<<endl;
+					lastSeenYear = static_cast<int>(pch[5]);
+				}
+				else 
+				{
+					cout << " isSem "<<endl;
+					string lastSeenSemestringString = pch;
+					lastSeenSemster = getSemesterFromString(lastSeenSemestringString);
+				}
+			}*/
+			
+			//cout << pch << "||";
+			/*pch = strtok_s(NULL, ",", &context);
+		}
+	}
+	*/
+}
