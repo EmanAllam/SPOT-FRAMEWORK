@@ -21,6 +21,7 @@
 #include "ActionDisplayStudentLevel.h"
 #include "ActionSupportMinor.h"
 #include "ActionShowGpa.h"
+#include "ActionCheckErrors.h"
 
 //EMAN
 #include "ActionValidityReport.h"
@@ -216,6 +217,11 @@ bool Registrar::ExecuteAction(Action* pAct)
 {
 	bool done = pAct->Execute();
 	delete pAct;	//free memory of that action object (either action is exec or cancelled)
+
+	ActionCheckErrors* checkErrors = new ActionCheckErrors(this);
+	checkErrors->Execute();
+	delete checkErrors;
+	
 	return done;
 }
 

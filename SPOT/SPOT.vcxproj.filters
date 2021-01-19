@@ -77,6 +77,7 @@
     <ClCompile Include="Warning.cpp" />
     <ClCompile Include="ActionValidityReport.cpp" />
     <ClCompile Include="BasicError.cpp" />
+    <ClCompile Include="ActionCheckErrors.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionAddNotes.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="ErrorList.h" />
     <ClInclude Include="ActionValidityReport.h" />
     <ClInclude Include="BasicError.h" />
+    <ClInclude Include="ActionCheckErrors.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

@@ -123,6 +123,7 @@
     <ClCompile Include="ActionAddNotes.cpp" />
     <ClCompile Include="ActionChangeByCode.cpp" />
     <ClCompile Include="ActionChangeMenuItemTo.cpp" />
+    <ClCompile Include="ActionCheckErrors.cpp" />
     <ClCompile Include="ActionDeleteCourse.cpp" />
     <ClCompile Include="ActionDisplayStudentLevel.cpp" />
     <ClCompile Include="ActionDragAndDropCrs.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="ActionAddNotes.h" />
     <ClInclude Include="ActionChangeByCode.h" />
     <ClInclude Include="ActionChangeMenuItemTo.h" />
+    <ClInclude Include="ActionCheckErrors.h" />
     <ClInclude Include="ActionDeleteCourse.h" />
     <ClInclude Include="ActionDisplayStudentLevel.h" />
     <ClInclude Include="ActionDragAndDropCrs.h" />
